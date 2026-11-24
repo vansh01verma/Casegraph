@@ -1,6 +1,7 @@
 fastapi
-uvicorn
+uvicorn[standard]
 sqlalchemy
+psycopg[binary]
 httpx
 networkx
 reportlab
