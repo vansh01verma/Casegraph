@@ -1,4 +1,5 @@
-const BASE = '/api/demo'
+const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
+const BASE = `${API_BASE}/api/demo`
 
 async function req(path, opts) {
   const r = await fetch(BASE + path, opts)
@@ -43,6 +44,6 @@ export const api = {
   audit: () => req('/audit'),
 }
 
-export const EV_RE = /\bEV-\d{4}\b/g
+export const EV_RE = /\\bEV-\\d{4}\\b/g
 export const fmtTime = (iso) => (iso ? iso.slice(11, 19) : '')
 export const fmtDateTime = (iso) => (iso ? iso.slice(0, 10) + ' ' + iso.slice(11, 19) : '')
