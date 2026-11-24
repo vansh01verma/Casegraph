@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+body { @apply bg-navy-950 text-slate-200 font-sans antialiased; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { @apply bg-navy-600 rounded; }
+.card { @apply bg-navy-800/80 border border-navy-600/60 rounded-xl; }
+.btn { @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium border border-navy-600 bg-navy-700 hover:bg-navy-600 transition-colors disabled:opacity-40 disabled:cursor-not-allowed; }
+.btn-primary { @apply bg-cyan-500 hover:bg-cyan-400 text-navy-950 border-cyan-400; }
+.btn-danger { @apply border-red-500/50 text-red-300 hover:bg-red-500/10; }
+.input { @apply bg-navy-900 border border-navy-600 rounded-lg px-3 py-1.5 text-sm placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-400; }
+.fade-in { animation: fade .25s ease-out; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.react-flow__attribution { display: none; }
+.react-flow__controls button { @apply bg-navy-700 border-navy-600 text-slate-200; }
+.react-flow__controls button svg { fill: currentColor; }
+.leaflet-container { background: #0b1a2e; border-radius: 0.75rem; }
