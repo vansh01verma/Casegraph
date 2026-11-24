@@ -1,4 +1,4 @@
-# CaseGraph – Demo Mode
+# CaseGraph 
 
 A self-contained, fully interactive Demo Mode for CaseGraph built on a **synthetic** financial-fraud case
 ("Operation Silver Ledger", 239 records). Every name, number, account, place and record is fictional and labelled
