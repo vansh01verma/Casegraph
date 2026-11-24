@@ -5,3 +5,5 @@ __pycache__/
 backend/demo_data/
 *.pyc
 .env
+.venv/
+

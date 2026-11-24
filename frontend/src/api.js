@@ -1,4 +1,12 @@
-const BASE = '/api/demo'
+export const API_HOST = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '')
+const normalizedHost = API_HOST ? (API_HOST.startsWith('http') ? API_HOST : `https://${API_HOST}`) : ''
+const BASE = `${normalizedHost}/api/demo`
+
+export const getFullUrl = (path) => {
+  if (!path) return ''
+  if (path.startsWith('http://') || path.startsWith('https://')) return path
+  return `${normalizedHost}${path.startsWith('/') ? '' : '/'}${path}`
+}
 
 async function req(path, opts) {
   const r = await fetch(BASE + path, opts)
@@ -22,7 +30,11 @@ export const api = {
   overview: () => req('/overview'),
   caseInfo: () => req('/case'),
   evidence: (params) => req('/evidence' + qs(params)),
-  evidenceDetail: (id) => req(`/evidence/${id}`),
+  evidenceDetail: async (id) => {
+    const d = await req(`/evidence/${id}`)
+    if (d && d.file_url) d.file_url = getFullUrl(d.file_url)
+    return d
+  },
   verify: (id) => req(`/evidence/${id}/verify`),
   entities: (type) => req('/entities' + qs({ type })),
   entity: (id) => req(`/entities/${id}`),
@@ -38,7 +50,11 @@ export const api = {
   gaps: () => req('/gaps'),
   ask: (question, mode) => post('/assistant', { question, mode }),
   reconstruct: (mode) => post('/reconstruction/run', { mode }),
-  generateReport: () => post('/report/generate'),
+  generateReport: async () => {
+    const r = await post('/report/generate')
+    if (r && r.download_url) r.download_url = getFullUrl(r.download_url)
+    return r
+  },
   reset: () => post('/reset'),
   audit: () => req('/audit'),
 }
