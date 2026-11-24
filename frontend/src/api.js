@@ -1,4 +1,5 @@
-const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
+const configuredApi = import.meta.env.VITE_API_URL || ''
+const API_BASE = (configuredApi && !/^https?:\\/\\//i.test(configuredApi) ? `https://${configuredApi}` : configuredApi).replace(/\/$/, '')
 const BASE = `${API_BASE}/api/demo`
 
 async function req(path, opts) {
