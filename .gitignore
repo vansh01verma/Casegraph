@@ -1,9 +1,12 @@
 node_modules/
-dist/
+frontend/dist/
 __pycache__/
 .pytest_cache/
 backend/demo_data/
 *.pyc
 .env
 .venv/
+!backend/dist/
+!backend/dist/**
+
 
