@@ -50,7 +50,6 @@ cd frontend && npm install && npm run dev      # http://localhost:5173  (proxies
 Separate engine, `demo_`-prefixed tables, `DEMO-` ids, separate files directory, no imports from the live app, reset only touches demo tables/files.
 
 ## Known limitations / not done
-- **Leaflet map is not implemented**: location evidence appears in the timeline/graph/evidence views, but there is no map page.
 - Sentence-Transformers is not used; identity scoring is explicit feature-based computation (Jaccard, string similarity, co-location).
 - Local/Cloud AI paths are tested with a mocked transport only (no real Ollama or API call was made).
 - Tests don't cover your real database, auth or existing UI, since that code was not available.
