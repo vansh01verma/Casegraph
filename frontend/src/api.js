@@ -1,6 +1,6 @@
 const configuredApi = import.meta.env.VITE_API_URL || ''
-const API_BASE = (configuredApi && !/^https?:\\/\\//i.test(configuredApi) ? `https://${configuredApi}` : configuredApi).replace(/\/$/, '')
-const BASE = `${API_BASE}/api/demo`
+const API_BASE = (configuredApi && !/^https?:\/\//i.test(configuredApi) ? \`https://\${configuredApi}\` : configuredApi).replace(/\/$/, '')
+const BASE = \`\${API_BASE}/api/demo\`
 
 async function req(path, opts) {
   const r = await fetch(BASE + path, opts)
@@ -24,19 +24,19 @@ export const api = {
   overview: () => req('/overview'),
   caseInfo: () => req('/case'),
   evidence: (params) => req('/evidence' + qs(params)),
-  evidenceDetail: (id) => req(`/evidence/${id}`),
-  verify: (id) => req(`/evidence/${id}/verify`),
+  evidenceDetail: (id) => req(\`/evidence/\${id}\`),
+  verify: (id) => req(\`/evidence/\${id}/verify\`),
   entities: (type) => req('/entities' + qs({ type })),
-  entity: (id) => req(`/entities/${id}`),
+  entity: (id) => req(\`/entities/\${id}\`),
   identity: () => req('/identity'),
-  decide: (id, decision) => post(`/identity/${id}/decision`, { decision }),
+  decide: (id, decision) => post(\`/identity/\${id}/decision\`, { decision }),
   graph: () => req('/graph'),
-  neighbors: (id) => req(`/graph/neighbors/${id}`),
+  neighbors: (id) => req(\`/graph/neighbors/\${id}\`),
   timeline: (params) => req('/timeline' + qs(params)),
   contradictions: () => req('/contradictions'),
-  review: (id, status) => post(`/contradictions/${id}/review`, { status }),
+  review: (id, status) => post(\`/contradictions/\${id}/review\`, { status }),
   hypotheses: () => req('/hypotheses'),
-  challenge: (id) => post(`/hypotheses/${id}/challenge`),
+  challenge: (id) => post(\`/hypotheses/\${id}/challenge\`),
   gaps: () => req('/gaps'),
   ask: (question, mode) => post('/assistant', { question, mode }),
   reconstruct: (mode) => post('/reconstruction/run', { mode }),
@@ -45,6 +45,6 @@ export const api = {
   audit: () => req('/audit'),
 }
 
-export const EV_RE = /\\bEV-\\d{4}\\b/g
+export const EV_RE = /\bEV-\d{4}\b/g
 export const fmtTime = (iso) => (iso ? iso.slice(11, 19) : '')
 export const fmtDateTime = (iso) => (iso ? iso.slice(0, 10) + ' ' + iso.slice(11, 19) : '')
